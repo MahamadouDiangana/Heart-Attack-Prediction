@@ -13,8 +13,8 @@ RUN pip install -r requirements.txt
 # Copy the content of the local src directory to the working directory
 COPY . .
 
-# Expose the port that your app runs on
-EXPOSE 8501
+# Expose the port that your app runs on (This line is optional in Heroku)
+# EXPOSE 8501
 
 # Command to run the application
-CMD ["streamlit", "run", "--server.port", "8501", "front_back_end.py"]
+CMD ["streamlit", "run", "--server.port", "$PORT", "front_back_end.py"]
