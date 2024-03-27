@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set Docker config directory
+        run: echo 'export DOCKER_CONFIG=$(mktemp -d)' >> $GITHUB_ENV
+
       - name: Log in to Heroku Container Registry
         run: echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
 
