@@ -22,4 +22,4 @@ RUN python -m pip install -r requirements.txt
 #USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD [ "streamlit", "run", "--server.port", "8501", "front_back_end" ]
+CMD [ "streamlit", "run", "--server.port", "8501", "front_back_end.py" ]
