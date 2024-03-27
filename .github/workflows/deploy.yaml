@@ -6,28 +6,21 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Heroku CLI
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Log in to Heroku
-      run: echo "$HEROKU_API_KEY" | docker login -u _ --password-stdin registry.heroku.com
+      - name: Log in to Heroku Container Registry
+        run: echo "$HEROKU_API_KEY" | docker login -u _ --password-stdin registry.heroku.com
 
-    - name: Build Docker image
-      run: docker build . -t my-streamlit-app
+      - name: Build Docker image
+        run: docker build . -t my-streamlit-app
 
-    - name: Tag Docker image for Heroku
-      run: docker tag my-streamlit-app registry.heroku.com/heart-attack-prediction/web
+      - name: Push Docker image to Heroku Container Registry
+        run: docker tag my-streamlit-app registry.heroku.com/heart-attack-prediction/web && docker push registry.heroku.com/heart-attack-prediction/web
 
-    - name: Push Docker image to Heroku Container Registry
-      run: docker push registry.heroku.com/heart-attack-prediction/web
-
-    - name: Release app on Heroku
-      run: heroku container:release web -a heart-attack-prediction
+      - name: Release app on Heroku
+        run: heroku container:release web -a heart-attack-prediction
