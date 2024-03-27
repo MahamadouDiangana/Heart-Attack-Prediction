@@ -13,17 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set Docker config directory
-        run: echo 'export DOCKER_CONFIG=$(mktemp -d)' >> $GITHUB_ENV
+      - name: Set up Heroku CLI
+        uses: actions/heroku@v7
+        with:
+          heroku-api-key: ${{ secrets.HEROKU_API_KEY }}
 
-      - name: Log in to Heroku Container Registry
-        run: echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
+      - name: Login to Heroku
+        run: heroku container:login
 
-      - name: Build Docker image
-        run: docker build . -t my-streamlit-app
+      - name: Build and push Docker image
+        run: heroku container:push web --app ${{ secrets.HEROKU_APP_NAME }}
 
-      - name: Push Docker image to Heroku Container Registry
-        run: docker tag my-streamlit-app registry.heroku.com/heart-attack-prediction/web && docker push registry.heroku.com/heart-attack-prediction/web
-
-      - name: Release app on Heroku
-        run: heroku container:release web -a heart-attack-prediction
+      - name: Release Docker image
+        run: heroku container:release web --app ${{ secrets.HEROKU_APP_NAME }}
