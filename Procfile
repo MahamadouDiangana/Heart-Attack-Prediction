@@ -1,1 +1,1 @@
-web: streamlit run --server.port $PORT front_back_end.py
+web: streamlit run --server.port 8501 front_back_end.py
