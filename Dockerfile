@@ -1,7 +1,8 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.12-slim
 
-EXPOSE 8501
+ENV PORT 8501
+EXPOSE $PORT
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
