@@ -5,3 +5,4 @@ Khalil_heart_attack.ipynb
 Zineb_heart_attack.ipynb
 .vscode
 .dockerignore
+deploy_using_your_docker_hub_image.yaml
