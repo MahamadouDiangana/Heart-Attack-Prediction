@@ -31,7 +31,7 @@ Model Evaluation & Validation: Evaluated and validated models to ensure accuracy
 Deployment: Deployed the validated model using a Streamlit interface for real-time predictions. </br>
 
 </br>
-## _`User Interface`_
+<b><h2><i>User Interface</i></h2></b>
 Developed a user-friendly interface with Streamlit where medical staff can input patient data and receive predictions from the model in real-time.
 
 </br>
